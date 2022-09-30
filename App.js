@@ -1,20 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// import { StatusBar } from 'expo-status-bar';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import AWS from './src/Projects/AWS';
+import CollorGenerator from './src/Projects/CollorGenerator';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView>
+      <View style={{ color: 'green', }}>
+        <CollorGenerator> </CollorGenerator>
+        {/* <AWS></AWS> */}
+      </View>
+    </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// const  style = styleSheet.create ({
+//   textColor: {
+//     color: 'red',
+    
+//   }
+// });
