@@ -1,12 +1,21 @@
-import React, { Component } from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import React from 'react';
 
-export class CollorGenerator extends Component {
-  render() {
+export default function CollorGenerator() {
+
+    let randomColorGenerator = () => {
+        const red = Math.floor(Math.random() * 256);
+        console.log(red);
+    }
+
     return (
         <View>
-            <TouchableOpacity>
-                <Text style={styles.textStyle}>CLICK me To Get New Color.</Text>
+            <TouchableOpacity
+                onPress={() => {
+                    randomColorGenerator();
+                }}
+            >
+                <Text style={styles.textStyle}>CLICK me To Get New Color..</Text>
             </TouchableOpacity>
             <Text
                 style={{
@@ -21,10 +30,9 @@ export class CollorGenerator extends Component {
             </Text>
         </View>
     )
-  }
 }
 
-const styles = StyleSheet.create ({
+const styles = StyleSheet.create({
     textStyle:{
         backgroundColor: '#9980FA', 
         color: 'white', 
@@ -35,5 +43,3 @@ const styles = StyleSheet.create ({
         paddingBottom: 8,
     },
 })
-
-export default CollorGenerator;
