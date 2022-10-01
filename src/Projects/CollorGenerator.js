@@ -1,49 +1,74 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import React from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
+import React, { useState } from 'react';
 
 export default function CollorGenerator() {
 
+    const [newColor, setNweColor] = useState ([]);
+
     let randomColorGenerator = () => {
         const red = Math.floor(Math.random() * 256);
-        const green = Math.floor(Math.random() * 256);
         const blue = Math.floor(Math.random() * 256);
+        const green = Math.floor(Math.random() * 256);
         // console.log(red);
-        console.log(`rgb ${red}, ${green}, ${blue}`);
-        return `rgb ${red}, ${green}, ${blue}`;
+        // console.log(`rgb ${red}, ${green}, ${blue}`);
+        return `rgb(${red},${green},${blue})`;
     }
 
     return (
         <View>
             <TouchableOpacity
                 onPress={() => {
-                    randomColorGenerator();
+                    setNweColor([... newColor, randomColorGenerator()]);
                 }}
             >
-                <Text style={styles.textStyle}>CLICK me To Get New Color..</Text>
+                <Text style={styles.btnStyle}>CLICK me To Get New Color..</Text>
             </TouchableOpacity>
-            <Text
-                style={{
-                    backgroundColor: "rgb(200, 222, 245)",
-                    borderRadius: 6,
-                    width: 100,
-                    height: 100,
-                    alignItems: "center"
-                }}
-            >
 
-            </Text>
+            <FlatList
+                keyExtractor={(key) => key}
+                data={newColor}
+                renderItem={({ item }) => {
+                    console.log(item);
+                    return (
+                        // adding notun text div to add notun bg color 
+                        <View>
+                            <View style={{
+                                backgroundColor: item,
+                                width: 100,
+                                height: 100,
+                                borderRadius: 6,
+                                marginTop: 5,
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                width: "80%",
+                            }}
+                            >
+                                <Text style={styles.textStyle}>
+                                    {item}
+                                </Text>
+                            </View>
+                        </View>
+                    );
+                }}
+            />
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    textStyle:{
+    btnStyle:{
         backgroundColor: '#9980FA', 
-        color: 'white', 
         fontWeight: 500, 
         textAlign: 'center', 
         marginTop: 20, 
         paddingTop: 8, 
         paddingBottom: 8,
+        color: 'white',
+        fontSize: 20,
     },
+    textStyle:{
+        color: 'item',
+        fontSize: 20,
+    }
 })
