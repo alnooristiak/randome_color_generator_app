@@ -5,7 +5,11 @@ export default function CollorGenerator() {
 
     let randomColorGenerator = () => {
         const red = Math.floor(Math.random() * 256);
-        console.log(red);
+        const green = Math.floor(Math.random() * 256);
+        const blue = Math.floor(Math.random() * 256);
+        // console.log(red);
+        console.log(`rgb ${red}, ${green}, ${blue}`);
+        return `rgb ${red}, ${green}, ${blue}`;
     }
 
     return (
